@@ -1,0 +1,242 @@
+.fashion-loading {
+  position: absolute;
+  z-index: 10;
+  inset: 0;
+  display: grid;
+  min-height: 320px;
+  place-items: center;
+  overflow: hidden;
+  background: var(--color-paper, #fbf9f6);
+  opacity: 1;
+  transition: opacity 500ms ease-out;
+}
+
+.fashion-loading--exiting {
+  pointer-events: none;
+  opacity: 0;
+}
+
+.fashion-loading__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: min(100%, 360px);
+  padding: 4px 12px 8px;
+  text-align: center;
+}
+
+.fashion-loading__artwork {
+  position: relative;
+  width: min(100%, 330px);
+  height: clamp(220px, 24vw, 245px);
+  isolation: isolate;
+}
+
+.fashion-loading__item {
+  position: absolute;
+  transform-origin: 50% 55%;
+  will-change: transform, opacity;
+}
+
+.fashion-loading__garment {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.fashion-loading__trousers {
+  z-index: 0;
+  top: 27%;
+  left: 8%;
+  width: 43%;
+  height: 69%;
+  animation: fashion-trousers-enter 900ms cubic-bezier(0.2, 0.65, 0.3, 1) 140ms both;
+}
+
+.fashion-loading__trousers-float {
+  filter: drop-shadow(0 14px 10px rgb(37 35 31 / 16%));
+  animation: fashion-trousers-float 5.2s ease-in-out 1.04s infinite;
+}
+
+.fashion-loading__shirt {
+  z-index: 1;
+  top: 0;
+  left: 30%;
+  width: 38%;
+  height: 64%;
+  animation: fashion-shirt-enter 880ms cubic-bezier(0.2, 0.65, 0.3, 1) both;
+}
+
+.fashion-loading__shirt-float {
+  filter: drop-shadow(0 14px 10px rgb(37 35 31 / 14%));
+  animation: fashion-shirt-float 4.8s ease-in-out 880ms infinite;
+}
+
+.fashion-loading__jacket {
+  z-index: 2;
+  top: 18%;
+  right: 5%;
+  width: 42%;
+  height: 78%;
+  animation: fashion-jacket-enter 920ms cubic-bezier(0.2, 0.65, 0.3, 1) 280ms both;
+}
+
+.fashion-loading__jacket-float {
+  filter: drop-shadow(0 16px 12px rgb(37 35 31 / 20%));
+  animation: fashion-jacket-float 4.4s ease-in-out 1.2s infinite;
+}
+
+.fashion-loading__caption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.fashion-loading__eyebrow,
+.fashion-loading__message {
+  margin: 0;
+}
+
+.fashion-loading__eyebrow {
+  color: #764853;
+  font-family: var(--font-display, Georgia, serif);
+  font-size: 12px;
+  font-style: italic;
+  letter-spacing: 0.3px;
+}
+
+.fashion-loading__message {
+  color: #77736c;
+  font-family: var(--font-sans, Arial, sans-serif);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 2.1px;
+  text-transform: uppercase;
+}
+
+.fashion-loading__indicators {
+  display: flex;
+  gap: 6px;
+  margin-top: 3px;
+}
+
+.fashion-loading__indicators span {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #764853;
+  animation: fashion-indicator 900ms ease-in-out infinite;
+}
+
+.fashion-loading__indicators span:nth-child(2) {
+  animation-delay: 140ms;
+}
+
+.fashion-loading__indicators span:nth-child(3) {
+  animation-delay: 280ms;
+}
+
+@keyframes fashion-shirt-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 34px, 0) rotate(-9deg) scale(0.84);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(-2deg) scale(1);
+  }
+}
+
+@keyframes fashion-trousers-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(-78px, 16px, 0) rotate(-12deg) scale(0.88);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(-4deg) scale(1);
+  }
+}
+
+@keyframes fashion-jacket-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(74px, -10px, 0) rotate(25deg) scale(0.82);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(7deg) scale(1);
+  }
+}
+
+@keyframes fashion-shirt-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-1deg);
+  }
+
+  50% {
+    transform: translateY(-7px) rotate(1deg);
+  }
+}
+
+@keyframes fashion-trousers-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-5px) rotate(-1deg);
+  }
+}
+
+@keyframes fashion-jacket-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-6px) rotate(1deg);
+  }
+}
+
+@keyframes fashion-indicator {
+  0%,
+  80%,
+  100% {
+    opacity: 0.35;
+    transform: translateY(0);
+  }
+
+  40% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+
+@media (max-width: 420px) {
+  .fashion-loading__artwork {
+    width: min(100%, 290px);
+    height: 230px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fashion-loading,
+  .fashion-loading--exiting {
+    transition: none;
+  }
+
+  .fashion-loading__item,
+  .fashion-loading__garment,
+  .fashion-loading__indicators span {
+    animation: none;
+  }
+}
