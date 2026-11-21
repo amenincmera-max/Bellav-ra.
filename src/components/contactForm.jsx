@@ -23,7 +23,8 @@ function ContactForm() {
         }
         setErrors(newErrors);
         if(Object.keys(newErrors).length>0) {
-        return;
+            return;
+        }
     }
     return (
         <form
